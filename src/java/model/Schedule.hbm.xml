@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 16, 2018 9:31:51 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Schedule" table="schedule" catalog="threadther" optimistic-lock="version">
+        <composite-id name="id" class="model.ScheduleId">
+            <key-property name="movieStart" type="timestamp">
+                <column name="movie_start" length="19" />
+            </key-property>
+            <key-property name="studioNumber" type="int">
+                <column name="studio_number" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="movie" class="model.Movie" fetch="select">
+            <column name="movie_id">
+                <comment>FK Schedule</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="studio" class="model.Studio" update="false" insert="false" fetch="select">
+            <column name="studio_number" not-null="true">
+                <comment>PK,FK Schedule</comment>
+            </column>
+        </many-to-one>
+        <property name="price" type="java.lang.Integer">
+            <column name="price" />
+        </property>
+        <set name="transactions" table="transaction" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="movie_start" length="19" not-null="true">
+                    <comment>FK Transaction</comment>
+                </column>
+                <column name="studio_number" not-null="true">
+                    <comment>FK Transaction</comment>
+                </column>
+            </key>
+            <one-to-many class="model.Transaction" />
+        </set>
+    </class>
+</hibernate-mapping>

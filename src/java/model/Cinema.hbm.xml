@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 16, 2018 9:31:51 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Cinema" table="cinema" catalog="threadther" optimistic-lock="version">
+        <id name="cinemaName" type="string">
+            <column name="cinema_name" length="50" />
+            <generator class="assigned" />
+        </id>
+        <property name="address" type="string">
+            <column name="address" length="200" />
+        </property>
+        <property name="city" type="string">
+            <column name="city" length="50" />
+        </property>
+        <property name="province" type="string">
+            <column name="province" length="50" />
+        </property>
+        <set name="studios" table="studio" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cinema_name" length="50" />
+            </key>
+            <one-to-many class="model.Studio" />
+        </set>
+    </class>
+</hibernate-mapping>

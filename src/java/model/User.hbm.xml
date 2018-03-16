@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 16, 2018 9:31:51 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.User" table="user" catalog="threadther" optimistic-lock="version">
+        <id name="userId" type="int">
+            <column name="user_id" />
+            <generator class="assigned" />
+        </id>
+        <property name="firstName" type="string">
+            <column name="first_name" length="50" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="last_name" length="50" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="100" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="30" />
+        </property>
+        <property name="profilePicture" type="string">
+            <column name="profile_picture" length="100" />
+        </property>
+        <one-to-one name="customer" class="model.Customer"></one-to-one>
+        <set name="transactions" table="transaction" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_id" />
+            </key>
+            <one-to-many class="model.Transaction" />
+        </set>
+        <one-to-one name="admin" class="model.Admin"></one-to-one>
+        <one-to-one name="cashier" class="model.Cashier"></one-to-one>
+    </class>
+</hibernate-mapping>
