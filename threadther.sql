@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 16, 2018 at 05:34 PM
+-- Generation Time: Mar 17, 2018 at 02:21 PM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -129,10 +129,10 @@ CREATE TABLE `movie` (
 --
 
 INSERT INTO `movie` (`movie_id`, `title`, `synopsis`, `rating`, `duration`, `poster`, `status`) VALUES
-(1, 'BLACK PANTHER', 'After the death of his father, T''Challa returns home to the African nation of Wakanda to take his rightful place as king. When a powerful enemy suddenly reappears, T''Challa''s mettle as king -- and as Black Panther -- gets tested when he''s drawn into a conflict that puts the fate of Wakanda and the entire world at risk. Faced with treachery and danger, the young king must rally his allies and release the full power of Black Panther to defeat his foes and secure the safety of his people', 7.8, 135, 'blackpanther.jpg', 1),
-(2, 'TOMB RAIDER', 'Lara Croft is the fiercely independent daughter of an eccentric adventurer who vanished years earlier. Hoping to solve the mystery of her father''s disappearance, Croft embarks on a perilous journey to his last-known destination -- a fabled tomb on a mythical island that might be somewhere off the coast of Japan. The stakes couldn''t be higher as Lara must rely on her sharp mind, blind faith and stubborn spirit to venture into the unknown.', 7.3, 119, 'tombraider.jpg', 1),
-(3, 'RED SPARROW', 'Prima ballerina Dominika Egorova faces a bleak and uncertain future after she suffers an injury that ends her career. She soon turns to Sparrow School, a secret intelligence service that trains exceptional young people to use their minds and bodies as weapons. Egorova emerges as the most dangerous Sparrow after completing the sadistic training process. As she comes to terms with her new abilities, Dominika meets a CIA agent who tries to convince her that he is the only person she can trust.', 6.7, 138, 'redsparrow.jpg', 1),
-(4, 'AVENGERS: INFINITY WAR', 'Iron Man, Thor, the Hulk and the rest of the Avengers unite to battle their most powerful enemy yet -- the evil Thanos. On a mission to collect all six Infinity Stones, Thanos plans to use the artifacts to inflict his twisted will on reality. The fate of the planet and existence itself has never been more uncertain as everything the Avengers have fought for has led up to this moment.', 5, 156, 'avengersinfinitywar', 2);
+(1, 'BLACK PANTHER', 'After the death of his father, T''Challa returns home to the African nation of Wakanda to take his rightful place as king. When a powerful enemy suddenly reappears, T''Challa''s mettle as king -- and as Black Panther -- gets tested when he''s drawn into a conflict that puts the fate of Wakanda and the entire world at risk. Faced with treachery and danger, the young king must rally his allies and release the full power of Black Panther to defeat his foes and secure the safety of his people.', 7.8, 135, 'poster/blackpanther.jpg', 1),
+(2, 'TOMB RAIDER', 'Lara Croft is the fiercely independent daughter of an eccentric adventurer who vanished years earlier. Hoping to solve the mystery of her father''s disappearance, Croft embarks on a perilous journey to his last-known destination -- a fabled tomb on a mythical island that might be somewhere off the coast of Japan. The stakes couldn''t be higher as Lara must rely on her sharp mind, blind faith and stubborn spirit to venture into the unknown.', 7.3, 119, 'poster/tombraider.jpg', 1),
+(3, 'RED SPARROW', 'Prima ballerina Dominika Egorova faces a bleak and uncertain future after she suffers an injury that ends her career. She soon turns to Sparrow School, a secret intelligence service that trains exceptional young people to use their minds and bodies as weapons. Egorova emerges as the most dangerous Sparrow after completing the sadistic training process. As she comes to terms with her new abilities, Dominika meets a CIA agent who tries to convince her that he is the only person she can trust.', 6.7, 138, 'poster/redsparrow.jpg', 1),
+(4, 'AVENGERS: INFINITY WAR', 'Iron Man, Thor, the Hulk and the rest of the Avengers unite to battle their most powerful enemy yet -- the evil Thanos. On a mission to collect all six Infinity Stones, Thanos plans to use the artifacts to inflict his twisted will on reality. The fate of the planet and existence itself has never been more uncertain as everything the Avengers have fought for has led up to this moment.', 5, 156, 'poster/avengersinfinitywar.jpg', 2);
 
 -- --------------------------------------------------------
 
@@ -433,7 +433,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `movie`
 --
 ALTER TABLE `movie`
-  MODIFY `movie_id` int(10) NOT NULL AUTO_INCREMENT COMMENT 'PK Movie AI', AUTO_INCREMENT=5;
+  MODIFY `movie_id` int(10) NOT NULL AUTO_INCREMENT COMMENT 'PK Movie AI', AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `studio`
 --
@@ -489,7 +489,6 @@ ALTER TABLE `studio`
 -- Constraints for table `ticket`
 --
 ALTER TABLE `ticket`
-  ADD CONSTRAINT `fk_ticket_seat_position` FOREIGN KEY (`seat_position`) REFERENCES `seat` (`seat_position`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_ticket_transaction_id` FOREIGN KEY (`transaction_id`) REFERENCES `transaction` (`transaction_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --

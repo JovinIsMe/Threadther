@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 17, 2018 8:17:21 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Movie" table="movie" catalog="threadther" optimistic-lock="version">
+        <id name="movieId" type="java.lang.Integer">
+            <column name="movie_id" />
+            <generator class="identity" />
+        </id>
+        <property name="title" type="string">
+            <column name="title" length="100" />
+        </property>
+        <property name="synopsis" type="string">
+            <column name="synopsis" length="1000" />
+        </property>
+        <property name="rating" type="java.lang.Double">
+            <column name="rating" precision="22" scale="0" />
+        </property>
+        <property name="duration" type="java.lang.Integer">
+            <column name="duration" />
+        </property>
+        <property name="poster" type="string">
+            <column name="poster" length="100" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status">
+                <comment>0 expired, 1 available, 2 coming soon</comment>
+            </column>
+        </property>
+        <set name="schedules" table="schedule" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="movie_id">
+                    <comment>FK Schedule</comment>
+                </column>
+            </key>
+            <one-to-many class="model.Schedule" />
+        </set>
+    </class>
+</hibernate-mapping>
