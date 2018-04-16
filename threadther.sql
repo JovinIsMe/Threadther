@@ -324,7 +324,7 @@ INSERT INTO `transaction` (`transaction_id`, `studio_number`, `movie_start`, `us
 --
 
 CREATE TABLE `user` (
-  `user_id` int(10) NOT NULL COMMENT 'PK User',
+  `user_id` int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `first_name` varchar(50) DEFAULT NULL,
   `last_name` varchar(50) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
@@ -419,21 +419,18 @@ ALTER TABLE `transaction`
   ADD KEY `fk_transaction_user_id` (`user_id`),
   ADD KEY `fk_transaction_movie_start` (`movie_start`,`studio_number`);
 
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`user_id`);
+
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
-
+ALTER TABLE `user` AUTO_INCREMENT = 104;
 --
 -- AUTO_INCREMENT for table `movie`
 --
 ALTER TABLE `movie`
   MODIFY `movie_id` int(10) NOT NULL AUTO_INCREMENT COMMENT 'PK Movie AI', AUTO_INCREMENT=9;
+
 --
 -- AUTO_INCREMENT for table `studio`
 --

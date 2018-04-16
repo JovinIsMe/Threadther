@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 16, 2018 10:03:06 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Seat" table="seat" catalog="threadther" optimistic-lock="version">
+        <composite-id name="id" class="model.SeatId">
+            <key-property name="seatPosition" type="string">
+                <column name="seat_position" length="5" />
+            </key-property>
+            <key-property name="studioNumber" type="int">
+                <column name="studio_number" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="studio" class="model.Studio" update="false" insert="false" fetch="select">
+            <column name="studio_number" not-null="true">
+                <comment>PK,FK Seat</comment>
+            </column>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 16, 2018 10:03:06 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Customer" table="customer" catalog="threadther" optimistic-lock="version">
+        <id name="userId" type="int">
+            <column name="user_id" />
+            <generator class="foreign">
+                <param name="property">user</param>
+            </generator>
+        </id>
+        <one-to-one name="user" class="model.User" constrained="true"></one-to-one>
+        <property name="balance" type="java.lang.Integer">
+            <column name="balance" />
+        </property>
+        <property name="phoneNumber" type="java.lang.Integer">
+            <column name="phone_number" />
+        </property>
+        <property name="birthDate" type="date">
+            <column name="birth_date" length="10" />
+        </property>
+    </class>
+</hibernate-mapping>

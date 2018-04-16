@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 16, 2018 10:03:06 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Cashier" table="cashier" catalog="threadther" optimistic-lock="version">
+        <id name="userId" type="int">
+            <column name="user_id" />
+            <generator class="foreign">
+                <param name="property">user</param>
+            </generator>
+        </id>
+        <one-to-one name="user" class="model.User" constrained="true"></one-to-one>
+        <property name="address" type="string">
+            <column name="address" length="200" />
+        </property>
+        <property name="hireDate" type="date">
+            <column name="hire_date" length="10" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status">
+                <comment>1 working, 0 stopped</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

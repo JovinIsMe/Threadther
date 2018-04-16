@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
+  <services>
+    <service name="WSCashier">
+      <implementation-class>WS.WSCashier</implementation-class>
+    </service>
+    <service name="WSCustomer">
+      <implementation-class>WS.WSCustomer</implementation-class>
+    </service>
+    <service name="WSAdmin">
+      <implementation-class>WS.WSAdmin</implementation-class>
+    </service>
+  </services>
+  <clients/>
+</jax-ws>
