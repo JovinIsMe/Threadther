@@ -59,7 +59,7 @@ public class StudioDAO extends AbstractDAOClass<Studio>{
         ArrayList<Studio> result;
 
         try {
-            Query q = session.createQuery("FROM STUDIO");
+            Query q = session.createQuery("FROM Studio");
             result = (ArrayList<Studio>) q.list();
         } catch (Exception e) {
             e.printStackTrace();
@@ -76,8 +76,8 @@ public class StudioDAO extends AbstractDAOClass<Studio>{
         ArrayList<Studio> result;
 
         try {
-            Query q = session.createQuery("FROM STUDIO"
-                    + "WHERE CINEMA_NAME = :cinema_name");
+            Query q = session.createQuery("FROM Studio"
+                    + "WHERE cinemaName = :cinema_name");
             q.setParameter("cinema_name", cinema_name);
             result = (ArrayList<Studio>) q.list();
         } catch (Exception e) {
@@ -96,8 +96,8 @@ public class StudioDAO extends AbstractDAOClass<Studio>{
         Studio result;
 
         try {
-            Query q = session.createQuery("FROM STUDIO"
-                    + "WHERE STUDIO_NUMBER = :studio_number");
+            Query q = session.createQuery("FROM Studio"
+                    + "WHERE studioNumber = :studio_number");
             q.setParameter("studio_number", Integer.parseInt(objId));
             result = (Studio) q.uniqueResult();
         } catch (Exception e) {

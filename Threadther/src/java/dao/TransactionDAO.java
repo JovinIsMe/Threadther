@@ -61,7 +61,7 @@ public class TransactionDAO extends AbstractDAOClass<model.Transaction> {
         ArrayList<model.Transaction> result;
 
         try {
-            Query q = session.createQuery("FROM TRANSACTION");
+            Query q = session.createQuery("FROM Transaction");
             result = (ArrayList<model.Transaction>) q.list();
         } catch (Exception e) {
             e.printStackTrace();
@@ -78,8 +78,8 @@ public class TransactionDAO extends AbstractDAOClass<model.Transaction> {
         ArrayList<model.Transaction> result;
 
         try {
-            Query q = session.createQuery("FROM TRANSACTION"
-                    + " WHERE user_id = :u_id");
+            Query q = session.createQuery("FROM Transaction"
+                    + " WHERE userId = :u_id");
             q.setParameter("u_id", userId);
             result = (ArrayList<model.Transaction>) q.list();
         } catch (Exception e) {
@@ -98,8 +98,8 @@ public class TransactionDAO extends AbstractDAOClass<model.Transaction> {
         model.Transaction result;
 
         try {
-            Query q = session.createQuery("FROM TRANSACTION"
-                    + "WHERE TRANSACTION_ID = :trans_id");
+            Query q = session.createQuery("FROM Transaction"
+                    + "WHERE transactionId = :trans_id");
             q.setParameter("trans_id", Integer.parseInt(objId));
             result = (model.Transaction) q.uniqueResult();
         } catch (Exception e) {

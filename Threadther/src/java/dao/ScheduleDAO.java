@@ -48,7 +48,7 @@ public class ScheduleDAO extends AbstractDAOClass<Schedule> {
         ArrayList<Schedule> result;
 
         try {
-            Query q = session.createQuery("FROM SCHEDULE");
+            Query q = session.createQuery("FROM Schedule");
             result = (ArrayList<Schedule>) q.list();
         } catch (Exception e) {
             e.printStackTrace();
@@ -65,8 +65,8 @@ public class ScheduleDAO extends AbstractDAOClass<Schedule> {
         ArrayList<Schedule> result;
 
         try {
-            Query q = session.createQuery("FROM SCHEDULE"
-                    + "WHERE MOVIE_ID = :m_id");
+            Query q = session.createQuery("FROM Schedule"
+                    + "WHERE movieId = :m_id");
             q.setParameter("m_id", movieId);
             result = (ArrayList<Schedule>) q.list();
         } catch (Exception e) {
@@ -81,7 +81,7 @@ public class ScheduleDAO extends AbstractDAOClass<Schedule> {
 
     @Override
     public Schedule findById(String objId) {
-        System.out.println("FIND BY ID SCHEDULE: this function is not used.");
+        System.out.println("FIND BY ID Schedule: this function is not used.");
         return null;
     }
 

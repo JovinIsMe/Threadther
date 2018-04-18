@@ -66,7 +66,7 @@ public class CustomerDAO extends AbstractDAOClass<Customer> {
         ArrayList<Customer> result;
         
         try {
-            Query q = session.createQuery("FROM CUSTOMER");
+            Query q = session.createQuery("FROM Customer");
             result = (ArrayList<Customer>) q.list();
         } catch (Exception e) {
             e.printStackTrace();
@@ -84,8 +84,8 @@ public class CustomerDAO extends AbstractDAOClass<Customer> {
         Customer result;
         
         try {
-            Query q = session.createQuery("FROM CUSTOMER"
-                    + "WHERE user_id = :u_id");
+            Query q = session.createQuery("FROM Customer"
+                    + "WHERE userId = :u_id");
             q.setParameter("u_id", Integer.parseInt(objId));
             result = (Customer) q.uniqueResult();
         } catch (Exception e) {

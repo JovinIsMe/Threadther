@@ -23,7 +23,9 @@ public class CashierCtrl extends UserCtrl {
         _transaction.setUser(_user);
         _transaction.setStatus(1);
         new TransactionDAO().create(_transaction);
+            System.out.println("AAAAA " + _transaction.getTransactionId());
         for (Seat seat : _seat) {
+            System.out.println("AAAAA " + seat.getId().getSeatPosition());
             TicketId ticketId = new TicketId(_transaction.getTransactionId(), seat.getId().getSeatPosition());
             Ticket ticket = new Ticket(ticketId, _transaction);
             new TicketDAO().create(ticket);

@@ -59,7 +59,7 @@ public class CinemaDAO extends AbstractDAOClass<Cinema> {
         ArrayList<Cinema> result;
 
         try {
-            Query q = session.createQuery("FROM CINEMA");
+            Query q = session.createQuery("FROM Cinema");
             result = (ArrayList<Cinema>) q.list();
         } catch (Exception e) {
             e.printStackTrace();
@@ -77,8 +77,8 @@ public class CinemaDAO extends AbstractDAOClass<Cinema> {
         Cinema result;
 
         try {
-            Query q = session.createQuery("FROM CINEMA"
-                    + "WHERE CINEMA_NAME = :cinema_name");
+            Query q = session.createQuery("FROM Cinema"
+                    + "WHERE cinemaName = :cinema_name");
             q.setParameter("cinema_name", objId);
             result = (Cinema) q.uniqueResult();
         } catch (Exception e) {

@@ -15,7 +15,7 @@ public class UserDAO extends AbstractDAOClass<User> {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
         Transaction t = session.beginTransaction();
-        Query q = session.createQuery("FROM USER u "
+        Query q = session.createQuery("FROM User u "
                 + "WHERE u.email = :email "
                 + "AND u.password = :password");
         q.setParameter("email", email);
@@ -80,7 +80,7 @@ public class UserDAO extends AbstractDAOClass<User> {
         ArrayList<User> result;
 
         try {
-            Query q = session.createQuery("FROM USER");
+            Query q = session.createQuery("FROM User");
             result = (ArrayList<User>) q.list();
         } catch (Exception e) {
             e.printStackTrace();
@@ -98,8 +98,8 @@ public class UserDAO extends AbstractDAOClass<User> {
         User result;
 
         try {
-            Query q = session.createQuery("FROM USER"
-                    + "WHERE user_id = :u_id");
+            Query q = session.createQuery("FROM User"
+                    + "WHERE userId = :u_id");
             q.setParameter("u_id", Integer.parseInt(objId));
             result = (User) q.uniqueResult();
         } catch (Exception e) {

@@ -61,7 +61,7 @@ public class MovieDAO extends AbstractDAOClass<Movie> {
         ArrayList<Movie> result;
         Transaction tx = session.beginTransaction();
         try {
-            Query q = session.createQuery("FROM MOVIE");
+            Query q = session.createQuery("FROM Movie");
             result = (ArrayList<Movie>) q.list();
             tx.commit();
         } catch (Exception e) {
@@ -80,8 +80,8 @@ public class MovieDAO extends AbstractDAOClass<Movie> {
         Movie result = null;
         System.out.println("FIND BY ID MOVIE " + Integer.parseInt(objId));
         try {
-            Query q = session.createQuery("FROM MOVIE"
-                    + " WHERE movie_id = :m_id");
+            Query q = session.createQuery("FROM Movie"
+                    + " WHERE movieId = :m_id");
             Integer movie_id = Integer.parseInt(objId);
             q.setParameter("m_id", movie_id);
             result = (Movie) q.uniqueResult();
@@ -89,11 +89,6 @@ public class MovieDAO extends AbstractDAOClass<Movie> {
             e.printStackTrace();
             return null;
         } finally {
-            if (result != null) {
-                System.out.println("THIS FUCKING AWEFUCK " + result.toString() + result.getMovieId());
-            } else {
-                System.out.println("FIND BY ID NULL");
-            }
             session.close();
         }
 

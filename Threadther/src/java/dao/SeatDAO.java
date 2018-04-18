@@ -11,13 +11,13 @@ public class SeatDAO extends AbstractDAOClass<Seat>{
 
     @Override
     public boolean update(Seat updObj) {
-        System.out.println("FIND BY ID SEAT: this function is not used");
+        System.out.println("FIND BY ID Seat: this function is not used");
         return false;
     }
 
     @Override
     public boolean delete(String objId) {
-        System.out.println("FIND BY ID SEAT: this function is not used");
+        System.out.println("FIND BY ID Seat: this function is not used");
         return false;
     }
 
@@ -27,7 +27,7 @@ public class SeatDAO extends AbstractDAOClass<Seat>{
         ArrayList<Seat> result;
 
         try {
-            Query q = session.createQuery("FROM SEAT");
+            Query q = session.createQuery("FROM Seat");
             result = (ArrayList<Seat>) q.list();
         } catch (Exception e) {
             e.printStackTrace();
@@ -44,8 +44,8 @@ public class SeatDAO extends AbstractDAOClass<Seat>{
         ArrayList<Seat> result;
 
         try {
-            Query q = session.createQuery("FROM SEAT"
-                    + "WHERE STUDIO_NUMBER = :studio_number");
+            Query q = session.createQuery("FROM Seat"
+                    + "WHERE studioNumber = :studio_number");
             q.setParameter("studio_number", studio_number);
             result = (ArrayList<Seat>) q.list();
         } catch (Exception e) {

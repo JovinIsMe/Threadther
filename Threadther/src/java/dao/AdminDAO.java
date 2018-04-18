@@ -65,7 +65,7 @@ public class AdminDAO extends AbstractDAOClass<Admin> {
         ArrayList<Admin> result;
 
         try {
-            Query q = session.createQuery("FROM ADMIN");
+            Query q = session.createQuery("FROM Admin");
             result = (ArrayList<Admin>) q.list();
         } catch (Exception e) {
             e.printStackTrace();
@@ -83,8 +83,8 @@ public class AdminDAO extends AbstractDAOClass<Admin> {
         Admin result;
 
         try {
-            Query q = session.createQuery("FROM ADMIN"
-                    + "WHERE user_id = :u_id");
+            Query q = session.createQuery("FROM Admin"
+                    + "WHERE userId = :u_id");
             q.setParameter("u_id", Integer.parseInt(objId));
             result = (Admin) q.uniqueResult();
         } catch (Exception e) {

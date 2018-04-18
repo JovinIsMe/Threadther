@@ -67,7 +67,7 @@ public class CashierDAO extends AbstractDAOClass<Cashier>{
         ArrayList<Cashier> result;
 
         try {
-            Query q = session.createQuery("FROM CASHIER");
+            Query q = session.createQuery("FROM Cashier");
             result = (ArrayList<Cashier>) q.list();
         } catch (Exception e) {
             e.printStackTrace();
@@ -85,8 +85,8 @@ public class CashierDAO extends AbstractDAOClass<Cashier>{
         Cashier result;
 
         try {
-            Query q = session.createQuery("FROM CASHIER"
-                    + "WHERE user_id = :u_id");
+            Query q = session.createQuery("FROM Cashier"
+                    + "WHERE userId = :u_id");
             q.setParameter("u_id", Integer.parseInt(objId));
             result = (Cashier) q.uniqueResult();
         } catch (Exception e) {
