@@ -95,12 +95,11 @@ public class UserDAO extends AbstractDAOClass<User> {
     @Override
     public User findById(String objId) {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        User result;
+        User result=null;
 
         try {
-            Query q = session.createQuery("FROM User"
-                    + "WHERE userId = :u_id");
-            q.setParameter("u_id", Integer.parseInt(objId));
+            Query q = session.createQuery("FROM User WHERE email = :em");
+            q.setParameter("em", objId);
             result = (User) q.uniqueResult();
         } catch (Exception e) {
             e.printStackTrace();

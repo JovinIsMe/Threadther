@@ -1,20 +1,23 @@
 package controller;
 
 import dao.CustomerDAO;
-import dao.TicketDAO;
 import dao.TransactionDAO;
 import dao.UserDAO;
 import helper.HashHelper;
 import java.util.ArrayList;
 import model.Customer;
-import model.Seat;
-import model.Ticket;
-import model.TicketId;
+import model.Schedule;
 import model.Transaction;
 import model.User;
 
 /* @author Jovin Angelico */
 public class CustomerCtrl extends UserCtrl {
+    
+    public Customer getUser(int userId) {
+        
+        return (Customer) new CustomerDAO().findById(userId + "");
+        
+    }
 
     public Boolean register(User _user) {
         
@@ -23,9 +26,9 @@ public class CustomerCtrl extends UserCtrl {
         
     }
     
-    public Boolean editProfile(User _user) {
+    public Boolean editProfile(Customer _user) {
         
-        return (Boolean) new UserDAO().update(_user);
+        return (Boolean) new CustomerDAO().update(_user);
         
     }
     
@@ -45,23 +48,8 @@ public class CustomerCtrl extends UserCtrl {
     }
 
     @Override
-    public Boolean buyTicket(User _user, Transaction _transaction, ArrayList<Seat> _seat) {
-        
-        /* 
-        1. Add transaction with user_id is customer id, status = 0 (not printed, will be 1 printed) 
-        2. Add ticket(s) to table ticket
-        */
-        
-        _transaction.setUser(_user);
-        _transaction.setStatus(0);
-        new TransactionDAO().create(_transaction);
-        for (Seat seat : _seat) {
-            TicketId ticketId = new TicketId(_transaction.getTransactionId(), seat.getId().getSeatPosition());
-            Ticket ticket = new Ticket(ticketId, _transaction);
-            new TicketDAO().create(ticket);
-        }
-        return true;
-        
+    public Boolean buyTicket(Schedule schedule, Customer customer, String[] seats) {
+        return new TransactionCtrl().createTransaction(schedule, customer, new TransactionCtrl().NOT_PRINTED_STATUS, seats);
     }
     
     public Boolean printTicket(Transaction _transaction) {

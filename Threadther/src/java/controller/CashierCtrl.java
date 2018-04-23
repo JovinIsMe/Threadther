@@ -1,37 +1,14 @@
 package controller;
 
-import dao.TicketDAO;
-import dao.TransactionDAO;
-import java.util.ArrayList;
-import model.Seat;
-import model.Ticket;
-import model.TicketId;
-import model.Transaction;
-import model.User;
+import model.Customer;
+import model.Schedule;
 
 /* @author Jovin Angelico */
 public class CashierCtrl extends UserCtrl {
 
     @Override
-    public Boolean buyTicket(User _user, Transaction _transaction, ArrayList<Seat> _seat) {
-
-        /* 
-        1. Add transaction with user_id is cashier id, status = 1 (printed) 
-        2. Add ticket(s) to table ticket
-         */
-        
-        _transaction.setUser(_user);
-        _transaction.setStatus(1);
-        new TransactionDAO().create(_transaction);
-            System.out.println("AAAAA " + _transaction.getTransactionId());
-        for (Seat seat : _seat) {
-            System.out.println("AAAAA " + seat.getId().getSeatPosition());
-            TicketId ticketId = new TicketId(_transaction.getTransactionId(), seat.getId().getSeatPosition());
-            Ticket ticket = new Ticket(ticketId, _transaction);
-            new TicketDAO().create(ticket);
-        }
-        
-        return true;
+    public Boolean buyTicket(Schedule schedule, Customer customer, String[] seats) {
+        return new TransactionCtrl().createTransaction(schedule, customer, new TransactionCtrl().PRINTED_STATUS, seats);
     }
 
 }

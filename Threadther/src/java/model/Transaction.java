@@ -34,6 +34,13 @@ public class Transaction  implements java.io.Serializable {
        this.time = time;
        this.tickets = tickets;
     }
+    
+    public Transaction(Schedule schedule, User user, Integer status, Date time) {
+       this.schedule = schedule;
+       this.user = user;
+       this.status = status;
+       this.time = time;
+    }
    
     public Integer getTransactionId() {
         return this.transactionId;

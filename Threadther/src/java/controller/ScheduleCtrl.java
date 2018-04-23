@@ -1,5 +1,6 @@
 package controller;
 
+import dao.ScheduleDAO;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,12 +16,18 @@ public class ScheduleCtrl {
     private int movieId, price;
     private List<Integer> listStudioNumber;
     private List<Date> listSchedule;
+    
+    public ScheduleCtrl(){}
 
     public ScheduleCtrl(int movieId, int price, List<Integer> listStudioNumber, List<Date> listSchedule) {
         this.movieId = movieId;
         this.price = price;
         this.listStudioNumber = listStudioNumber;
         this.listSchedule = listSchedule;
+    }
+    
+    public ArrayList<Schedule> getAllScheduleByMovieId(int movieId) {
+        return new ScheduleDAO().getAllScheduleByMovieId(movieId);
     }
     
     public void commit() {
@@ -49,7 +56,7 @@ public class ScheduleCtrl {
             return this;
         }
 
-        public ScheduleCtrl build() {
+        public ScheduleBuilder build() {
             return new ScheduleCtrl(movieId, price, listStudioNumber, listSchedule);
         }
     }

@@ -3,6 +3,8 @@ package controller;
 import dao.UserDAO;
 import helper.HashHelper;
 import java.util.ArrayList;
+import model.Customer;
+import model.Schedule;
 import model.Seat;
 import model.Transaction;
 import model.User;
@@ -17,5 +19,5 @@ public abstract class UserCtrl {
         
     }
     
-    public abstract Boolean buyTicket(User _user, Transaction _transaction, ArrayList<Seat> _seat);
+    public abstract Boolean buyTicket(Schedule schedule, Customer customer, String[] tickets);
 }

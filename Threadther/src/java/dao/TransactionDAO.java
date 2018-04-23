@@ -10,7 +10,7 @@ import org.hibernate.Query;
 
 /* @author Jovin Angelico */
 public class TransactionDAO extends AbstractDAOClass<model.Transaction> {
-
+    
     @Override
     public boolean update(model.Transaction updObj) {
         Session session = HibernateUtil.getSessionFactory().openSession();
