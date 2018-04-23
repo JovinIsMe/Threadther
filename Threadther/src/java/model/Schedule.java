@@ -25,6 +25,13 @@ public class Schedule  implements java.io.Serializable {
         this.id = id;
         this.studio = studio;
     }
+    public Schedule(ScheduleId id, Movie movie, Studio studio, Integer price) {
+       this.id = id;
+       this.movie = movie;
+       this.studio = studio;
+       this.price = price;
+       this.transactions = transactions;
+    }
     public Schedule(ScheduleId id, Movie movie, Studio studio, Integer price, Set<Transaction> transactions) {
        this.id = id;
        this.movie = movie;

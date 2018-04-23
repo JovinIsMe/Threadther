@@ -60,28 +60,40 @@ public class ScheduleDAO extends AbstractDAOClass<Schedule> {
         return result;
     }
 
-    public ArrayList<Schedule> getAll(String movieId) {
+//    public ArrayList<Schedule> getAll(String movieId) {
+//        Session session = HibernateUtil.getSessionFactory().openSession();
+//        ArrayList<Schedule> result;
+//
+//        try {
+//            Query q = session.createQuery("FROM Schedule"
+//                    + "WHERE movieId = :m_id");
+//            q.setParameter("m_id", movieId);
+//            result = (ArrayList<Schedule>) q.list();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return null;
+//        } finally {
+//            session.close();
+//        }
+//
+//        return result;
+//    }
+    
+    public ArrayList<Schedule> getAllScheduleByMovieId(int movieId) {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        ArrayList<Schedule> result;
-
-        try {
-            Query q = session.createQuery("FROM Schedule"
-                    + "WHERE movieId = :m_id");
-            q.setParameter("m_id", movieId);
-            result = (ArrayList<Schedule>) q.list();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        } finally {
-            session.close();
+        ArrayList<Schedule> tmp = getAll();
+        ArrayList<Schedule> result = new ArrayList<>();
+        for (Schedule schedule : tmp) {
+            if(schedule.getMovie().getMovieId()==movieId){
+                result.add(schedule);
+            }
         }
-
         return result;
     }
 
     @Override
     public Schedule findById(String objId) {
-        System.out.println("FIND BY ID Schedule: this function is not used.");
+        System.out.println("FIND BY ID SCHEDULE: this function is not used.");
         return null;
     }
 

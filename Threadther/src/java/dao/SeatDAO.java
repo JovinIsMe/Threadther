@@ -11,13 +11,13 @@ public class SeatDAO extends AbstractDAOClass<Seat>{
 
     @Override
     public boolean update(Seat updObj) {
-        System.out.println("FIND BY ID Seat: this function is not used");
+        System.out.println("FIND BY ID SEAT: this function is not used");
         return false;
     }
 
     @Override
     public boolean delete(String objId) {
-        System.out.println("FIND BY ID Seat: this function is not used");
+        System.out.println("FIND BY ID SEAT: this function is not used");
         return false;
     }
 
@@ -39,26 +39,36 @@ public class SeatDAO extends AbstractDAOClass<Seat>{
         return result;
     }
     
-    public ArrayList<Seat> getAll(Integer studio_number) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        ArrayList<Seat> result;
+//    public ArrayList<Seat> getAll(Integer studio_number) {
+//        Session session = HibernateUtil.getSessionFactory().openSession();
+//        ArrayList<Seat> result;
+//
+//        try {
+//            Query q = session.createQuery("FROM SEAT"
+//                    + "WHERE STUDIO_NUMBER = :studio_number");
+//            q.setParameter("studio_number", studio_number);
+//            result = (ArrayList<Seat>) q.list();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return null;
+//        } finally {
+//            session.close();
+//        }
+//        
+//        return result;
+//        
+//    }
 
-        try {
-            Query q = session.createQuery("FROM Seat"
-                    + "WHERE studioNumber = :studio_number");
-            q.setParameter("studio_number", studio_number);
-            result = (ArrayList<Seat>) q.list();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        } finally {
-            session.close();
+    public ArrayList<Seat> getSeatByStudioNumber(int studioNumber){
+        ArrayList<Seat> tmp = getAll();
+        ArrayList<Seat> result = new ArrayList<>();
+        for (Seat seat : tmp) {
+            if(seat.getId().getStudioNumber()==studioNumber){
+                result.add(seat);
+            }
         }
-        
         return result;
-        
     }
-
     @Override
     public Seat findById(String objId) {
         System.out.println("FIND BY ID SEAT: this function is not used");

@@ -72,21 +72,13 @@ public class StudioDAO extends AbstractDAOClass<Studio>{
     }
     
     public ArrayList<Studio> getAll(String cinema_name) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        ArrayList<Studio> result;
-
-        try {
-            Query q = session.createQuery("FROM Studio"
-                    + "WHERE cinemaName = :cinema_name");
-            q.setParameter("cinema_name", cinema_name);
-            result = (ArrayList<Studio>) q.list();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        } finally {
-            session.close();
+        ArrayList<Studio> tmp = getAll();
+        ArrayList<Studio> result = new ArrayList<>();
+        for (Studio studio : tmp) {
+            if(studio.getCinema().getCinemaName().equals(cinema_name)){
+                result.add(studio);
+            }
         }
-
         return result;
     }
 
@@ -96,8 +88,7 @@ public class StudioDAO extends AbstractDAOClass<Studio>{
         Studio result;
 
         try {
-            Query q = session.createQuery("FROM Studio"
-                    + "WHERE studioNumber = :studio_number");
+            Query q = session.createQuery("FROM Studio WHERE studioNumber = :studio_number");
             q.setParameter("studio_number", Integer.parseInt(objId));
             result = (Studio) q.uniqueResult();
         } catch (Exception e) {

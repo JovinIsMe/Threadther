@@ -1,6 +1,8 @@
 package controller;
 
 import dao.MovieDAO;
+import dao.ScheduleDAO;
+import dao.SeatDAO;
 import java.util.ArrayList;
 import model.Movie;
 import model.Schedule;
@@ -39,20 +41,16 @@ public class MovieCtrl {
         return comingSoonMovie;
 
     }
-
-    public ArrayList<Schedule> showScheduleByMovie() {
-
-        // Add here
-        // Get schedule by specific movie
-        return null;
-
+    
+    public Movie getMovie(String movieId){
+        return new MovieDAO().findById(movieId);
+    }
+    
+    public ArrayList<Schedule> showScheduleByMovie(int movieId) {
+        return new ScheduleDAO().getAllScheduleByMovieId(movieId);
     }
 
-    public ArrayList<Seat> showSeatBySchedule() {
-
-        // Add here
-        // Check from table ticket by available schedule
-        return null;
-
+    public ArrayList<Seat> showSeatByStudioNumber(int studioNumber) {
+        return new SeatDAO().getSeatByStudioNumber(studioNumber);
     }
 }
