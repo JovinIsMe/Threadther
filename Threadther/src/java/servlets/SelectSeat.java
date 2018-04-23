@@ -1,5 +1,6 @@
 package servlets;
 
+import controller.TransactionCtrl;
 import dao.SeatDAO;
 import dao.StudioDAO;
 import java.io.IOException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Seat;
 import model.Studio;
+import model.Transaction;
 
 /**
  *
@@ -43,6 +45,9 @@ public class SelectSeat extends HttpServlet {
         out.println(movieId);
         out.println(time);
         out.println(studioNumber);
+        
+        List<String> bookedSeat = new TransactionCtrl().getBookedSeats(time, studioNumber);
+        
         List<Seat> seats = new SeatDAO().getSeatByStudioNumber(studioNumber);
         out.println("<!DOCTYPE html><html><head></head><body><form action='buy' method='post'>");
         int i = 0;
@@ -55,7 +60,7 @@ public class SelectSeat extends HttpServlet {
             if (i % studio.getColCapacity() == 0) {
                 out.println("<tr>");
             }
-            if (i == 14) {
+            if (bookedSeat.contains(seat.getId().getSeatPosition())) {
                 out.print("<td><input type='checkbox' name='seat' value='" + seat.getId().getSeatPosition() + "' checked disabled>" + seat.getId().getSeatPosition() + "</button></td>");
             } else {
                 out.print("<td><input type='checkbox' name='seat' value='" + seat.getId().getSeatPosition() + "'>" + seat.getId().getSeatPosition() + "</button></td>");

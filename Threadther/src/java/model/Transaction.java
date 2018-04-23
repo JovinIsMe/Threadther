@@ -85,9 +85,10 @@ public class Transaction  implements java.io.Serializable {
         this.tickets = tickets;
     }
 
-
-
-
+    @Override
+    public String toString() {
+        return "Transaction{" + "transactionId=" + transactionId + ", status=" + status + ", time=" + time + '}';
+    }
 }
 
 

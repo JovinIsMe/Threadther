@@ -2,11 +2,19 @@ package controller;
 
 import dao.TicketDAO;
 import dao.TransactionDAO;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
+import java.util.ArrayList;
 import model.Transaction;
 import model.Schedule;
 import model.Ticket;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 import model.Customer;
+import model.Seat;
 import model.TicketId;
 
 /* @author Jovin Angelico */
@@ -45,5 +53,31 @@ public class TransactionCtrl {
         }
         return true;
 
+    }
+
+    public List<String> getBookedSeats(String time, int studioNumber) {
+
+        Date dob = null;
+        GregorianCalendar gc = new GregorianCalendar();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            dob = sdf.parse(time);
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
+        gc.setTime(dob);
+
+        List<Transaction> result = new TransactionDAO().getCustomTransaction(dob, studioNumber);
+        TicketDAO ticketDAO = new TicketDAO();
+        List<String> bookedSeat = new ArrayList<String>();
+        for (Transaction transaction : result) {
+            ArrayList<Ticket> bookedTicket = ticketDAO.getAll(transaction.getTransactionId() + "");
+            for (Ticket ticket : bookedTicket) {
+                bookedSeat.add(ticket.getId().getSeatPosition());
+            }
+        }
+        
+        return bookedSeat;
     }
 }

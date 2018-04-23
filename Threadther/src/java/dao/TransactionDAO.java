@@ -91,6 +91,25 @@ public class TransactionDAO extends AbstractDAOClass<model.Transaction> {
 
         return result;
     }
+    
+    public ArrayList<model.Transaction> getCustomTransaction(Date time, int studioNumber) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        ArrayList<model.Transaction> result;
+
+        try {
+            Query q = session.createQuery("FROM Transaction WHERE studio_number = :s_num AND movie_start = :time");
+            q.setParameter("s_num", studioNumber);
+            q.setParameter("time", time);
+            result = (ArrayList<model.Transaction>) q.list();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            session.close();
+        }
+
+        return result;
+    }
 
     @Override
     public model.Transaction findById(String objId) {

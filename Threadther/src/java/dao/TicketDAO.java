@@ -32,8 +32,7 @@ public class TicketDAO extends AbstractDAOClass<Ticket>{
         ArrayList<Ticket> result;
 
         try {
-            Query q = session.createQuery("FROM Ticket"
-                    + "WHERE transactionId = :trans_id");
+            Query q = session.createQuery("FROM Ticket as t WHERE t.id.transactionId = :trans_id");
             q.setParameter("trans_id", Integer.parseInt(objId));
             result = (ArrayList<Ticket>) q.list();
         } catch (Exception e) {
